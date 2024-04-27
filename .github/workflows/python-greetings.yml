@@ -10,26 +10,35 @@ on:
 
 jobs:
   install-pip-deps:
-    name: Build
+    name: Install PIP Dependencies
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.5.2
 
-      - name: print test
-        run: echo install-pip-deps >> test
+      - name: Print title
+        run: echo Installing pip dependencies
 
-      - name: print node version
-        run: node -v 
-  
+      - name: Clone repository
+        run: git clone https://github.com/mtararujs/python-greetings app
+
+      - name: Create virtual env (Arch specific)
+        run: virtualenv python && source python/bin/env/activate
+
+      - name: Install pip dependencies
+        run: pip install -r app/requirements.txt
+
+
   deploy-to-dev:
     needs: install-pip-deps
     name: Deploy on Dev
     runs-on: self-hosted
 
     steps:
-      - name: Deploy on Dev
-        run: echo install-pip-deps >> test
+      - uses: actions/checkout@v3.5.2
+
+      - name: Print title
+        run: echo Deploying to DEV
 
   test-on-dev:
     needs: deploy-to-dev
@@ -37,11 +46,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Test on Dev
-        run: echo install-pip-deps >> test
+      - name: Print title
+        run: echo Testing on DEV
 
-      - name: Check 
-        run: cat test
 #  deploy-to-staging:
 #    name: Deploy to Staging
 #    runs-on: self-hosted
