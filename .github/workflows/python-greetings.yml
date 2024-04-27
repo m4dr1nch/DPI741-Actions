@@ -54,11 +54,21 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - uses: actions/checkout@v3.5.2
+
       - name: Print title
         run: echo Testing on DEV
 
-      - name: Test app
-        run: curl http://localhost:7000/greeting
+      - name: Get mocha
+        run: git clone https://github.com/mtararujs/course-js-api-framework mocha
+
+      - name: Install npm dependencies
+        working-directory: mocha
+        run: npm install
+
+      - name: Run tests
+        working-directory: mocha
+        run: npm run greetings greeting_dev
 
 #  deploy-to-staging:
 #    name: Deploy to Staging
