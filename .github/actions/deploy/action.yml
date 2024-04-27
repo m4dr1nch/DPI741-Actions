@@ -9,7 +9,6 @@ inputs:
     default: 'https://github.com/m4dr1nch/DPI741-python-greetings'
 runs:
   using: "composite"
-  name: Deploy on Dev
   runs-on: self-hosted
 
   steps:
