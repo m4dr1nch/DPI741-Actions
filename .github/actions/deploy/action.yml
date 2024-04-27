@@ -13,22 +13,26 @@ runs:
   steps:
     - name: Print title
       run: echo "Deploying to $APP_ENV"
+      shell: bash
       env:
         APP_ENV: ${{ inputs.environ }}
     
     - name: Remove the app if running
       run: pm2 delete greetings-app-$APP_ENV || true
+      shell: bash
       env:
         APP_ENV: ${{ inputs.environ }}
 
     - name: Clone repository
       run: git clone $APP_REPO $APP_ENV
+      shell: bash
       env:
         APP_ENV: ${{ inputs.environ }}
         APP_REPO: ${{ inputs.repo }}
 
     - name: Start app
       working-directory: ${{ inputs.environ }}
+      shell: bash
       run: pm2 start app.py --name greetings-app-$APP_ENV -- --port $APP_PORT
       env:
         APP_ENV: ${{ inputs.environ }}
