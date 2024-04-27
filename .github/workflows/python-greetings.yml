@@ -76,7 +76,7 @@ jobs:
           environ: 'stg'
 
   deploy-to-preprod:
-    needs: test-on-staging
+    needs: test-on-stg
     name: Deploy on preprod
     runs-on: self-hosted
 
