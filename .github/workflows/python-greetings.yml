@@ -62,7 +62,7 @@ jobs:
         with:
           environ: 'stg'
           repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-          port: 7001
+          port: 7002
 
   test-on-stg:
     needs: deploy-to-stg
@@ -86,7 +86,7 @@ jobs:
         with:
           environ: 'preprod'
           repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-          port: 7001
+          port: 7003
 
   test-on-preprod:
     needs: deploy-to-preprod
@@ -110,7 +110,7 @@ jobs:
         with:
           environ: 'prod'
           repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-          port: 7001
+          port: 7004
 
   test-on-prod:
     needs: deploy-to-prod
