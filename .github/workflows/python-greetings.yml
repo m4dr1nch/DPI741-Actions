@@ -51,29 +51,29 @@ jobs:
           environ: 'dev'
 
 
-  deploy-to-staging:
+  deploy-to-stg:
     needs: test-on-dev
-    name: Deploy on staging
+    name: Deploy on stg
     runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/deploy
         with:
-          environ: 'staging'
+          environ: 'stg'
           repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
           port: 7001
 
-  test-on-staging:
-    needs: deploy-to-staging
-    name: Test on staging
+  test-on-stg:
+    needs: deploy-to-stg
+    name: Test on stg
     runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/test
         with:
-          environ: 'staging'
+          environ: 'stg'
 
   deploy-to-preprod:
     needs: test-on-staging
