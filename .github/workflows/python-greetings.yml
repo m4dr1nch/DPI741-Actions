@@ -52,7 +52,7 @@ jobs:
 
 
   deploy-to-staging:
-    needs: install-pip-deps
+    needs: test-on-dev
     name: Deploy on staging
     runs-on: self-hosted
 
@@ -76,7 +76,7 @@ jobs:
           environ: 'staging'
 
   deploy-to-preprod:
-    needs: install-pip-deps
+    needs: test-on-staging
     name: Deploy on preprod
     runs-on: self-hosted
 
@@ -100,7 +100,7 @@ jobs:
           environ: 'preprod'
 
   deploy-to-prod:
-    needs: install-pip-deps
+    needs: test-on-preprod
     name: Deploy on prod
     runs-on: self-hosted
 
