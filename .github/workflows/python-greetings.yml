@@ -23,7 +23,7 @@ jobs:
         run: git clone https://github.com/mtararujs/python-greetings app
 
       - name: Create virtual env (Arch specific)
-        run: virtualenv python && source python/bin/env/activate
+        run: virtualenv python && source python/bin/activate
 
       - name: Install pip dependencies
         run: pip install -r app/requirements.txt
