@@ -14,10 +14,12 @@ runs:
 
     - name: get mocha
       run: git clone https://github.com/mtararujs/course-js-api-framework mocha
+      shell: bash
 
     - name: install npm dependencies
       working-directory: mocha
       run: npm install
+      shell: bash
 
     - name: run tests
       working-directory: mocha
