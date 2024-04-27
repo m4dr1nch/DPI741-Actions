@@ -9,39 +9,83 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  install-pip-deps:
     name: Build
     runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: ... buil success ...
-        run: echo ... buil success ...
+      - name: print test
+        run: echo install-pip-deps >> test
 
-      - name: ... check node version ...
+      - name: print node version
         run: node -v 
   
-  tests:
-    name: Tests
+  deploy-to-dev:
+    needs: install-pip-deps
+    name: Deploy on Dev
     runs-on: self-hosted
 
     steps:
-      - name: ... tests success ...
-        run: echo ... test success xxx ...
+      - name: Deploy on Dev
+        run: echo install-pip-deps >> test
 
-  deploy:
-    name: Deploy
+  test-on-dev:
+    needs: deploy-to-dev
+    name: Test on Dev
     runs-on: self-hosted
 
     steps:
-      - name: ... deploy success ...
-        run: echo ... deploy success ...   
+      - name: Test on Dev
+        run: echo install-pip-deps >> test
 
-  cleanUp:
-    name: Clean up
-    runs-on: self-hosted
-
-    steps:
-      - name: ... clean up success ...
-        run: echo ... clean up success ...      
+      - name: Check 
+        run: cat test
+#  deploy-to-staging:
+#    name: Deploy to Staging
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Deploy to Staging
+#        run: echo test
+#
+#  test-on-staging:
+#    name: Test on Staging
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Test on Staging
+#        run: echo test
+#
+#  deploy-to-preprod:
+#    name: Deploy to Pre-prod
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Deploy to Pre-prod
+#        run: echo test
+#
+#  test-on-preprod:
+#    name: Test on Pre-prod
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Test on Pre-prod
+#        run: echo test
+#
+#  deploy-to-prod:
+#    name: Deploy to Prod
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Deploy to Prod
+#        run: echo test
+#
+#  test-on-prod:
+#    name: Test on Prod
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: Test on Prod
+#        run: echo test
