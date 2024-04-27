@@ -22,9 +22,6 @@ jobs:
       - name: Clone repository
         run: git clone https://github.com/mtararujs/python-greetings app
 
-      - name: Create virtual env (Arch specific)
-        run: virtualenv python && source python/bin/activate
-
       - name: Install pip dependencies
         run: pip install -r app/requirements.txt
 
@@ -48,6 +45,18 @@ jobs:
     steps:
       - name: Print title
         run: echo Testing on DEV
+  
+  clean:
+    needs: test-on-dev
+    name: Clean files
+    runs-on: self-hosted
+
+    steps:
+      - name: Kill all servers
+        run: pm2 kill
+
+      - name: Remove everything
+        run: rm -rf ./*
 
 #  deploy-to-staging:
 #    name: Deploy to Staging
