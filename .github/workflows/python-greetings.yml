@@ -33,9 +33,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3.5.2
-
-      - name: Print title
-        uses: ./.github/actions/deploy@v1
+      - uses: ./.github/actions/deploy@v1
         with:
           environ: 'dev'
           repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
