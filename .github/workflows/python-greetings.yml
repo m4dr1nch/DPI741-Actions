@@ -20,7 +20,7 @@ jobs:
         run: echo Installing pip dependencies
 
       - name: Clone repository
-        run: git clone https://github.com/mtararujs/python-greetings app
+        run: git clone https://github.com/m4dr1nch/DPI741-python-greetings app
 
       - name: Install pip dependencies
         run: pip install -r app/requirements.txt
@@ -36,6 +36,14 @@ jobs:
 
       - name: Print title
         run: echo Deploying to DEV
+      
+      - name: Remove the app if running
+        run: pm2 delete greetings-app-dev || true
+
+      - name: Start app
+        working-directory: app
+        run: pm2 start app.py --name greetings-app-dev -- --port 7000
+
 
   test-on-dev:
     needs: deploy-to-dev
@@ -45,18 +53,9 @@ jobs:
     steps:
       - name: Print title
         run: echo Testing on DEV
-  
-  clean:
-    needs: test-on-dev
-    name: Clean files
-    runs-on: self-hosted
 
-    steps:
-      - name: Kill all servers
-        run: pm2 kill
-
-      #- name: Remove everything
-      #  run: rm -rf ./*
+      - name: Test app
+        run: curl http://localhost:7000/greeting
 
 #  deploy-to-staging:
 #    name: Deploy to Staging
