@@ -55,8 +55,8 @@ jobs:
       - name: Kill all servers
         run: pm2 kill
 
-      - name: Remove everything
-        run: rm -rf ./*
+      #- name: Remove everything
+      #  run: rm -rf ./*
 
 #  deploy-to-staging:
 #    name: Deploy to Staging
