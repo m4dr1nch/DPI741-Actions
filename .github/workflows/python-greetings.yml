@@ -28,7 +28,7 @@ jobs:
 
   deploy-to-dev:
     needs: install-pip-deps
-    name: Deploy on Dev
+    name: Deploy on dev
     runs-on: self-hosted
 
     steps:
@@ -41,7 +41,7 @@ jobs:
 
   test-on-dev:
     needs: deploy-to-dev
-    name: Test on Dev
+    name: Test on dev
     runs-on: self-hosted
 
     steps:
@@ -50,50 +50,75 @@ jobs:
         with:
           environ: 'dev'
 
-#  deploy-to-staging:
-#    name: Deploy to Staging
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Deploy to Staging
-#        run: echo test
-#
-#  test-on-staging:
-#    name: Test on Staging
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Test on Staging
-#        run: echo test
-#
-#  deploy-to-preprod:
-#    name: Deploy to Pre-prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Deploy to Pre-prod
-#        run: echo test
-#
-#  test-on-preprod:
-#    name: Test on Pre-prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Test on Pre-prod
-#        run: echo test
-#
-#  deploy-to-prod:
-#    name: Deploy to Prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Deploy to Prod
-#        run: echo test
-#
-#  test-on-prod:
-#    name: Test on Prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - name: Test on Prod
-#        run: echo test
+
+  deploy-to-staging:
+    needs: install-pip-deps
+    name: Deploy on staging
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'staging'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7001
+
+  test-on-staging:
+    needs: deploy-to-staging
+    name: Test on staging
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'staging'
+
+  deploy-to-preprod:
+    needs: install-pip-deps
+    name: Deploy on preprod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'preprod'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7001
+
+  test-on-preprod:
+    needs: deploy-to-preprod
+    name: Test on preprod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'preprod'
+
+  deploy-to-prod:
+    needs: install-pip-deps
+    name: Deploy on prod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'prod'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7001
+
+  test-on-prod:
+    needs: deploy-to-prod
+    name: Test on prod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'preprod'
