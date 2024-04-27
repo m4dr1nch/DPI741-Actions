@@ -40,6 +40,9 @@ jobs:
       - name: Remove the app if running
         run: pm2 delete greetings-app-dev || true
 
+      - name: Clone repository
+        run: git clone https://github.com/m4dr1nch/DPI741-python-greetings app
+
       - name: Start app
         working-directory: app
         run: pm2 start app.py --name greetings-app-dev -- --port 7000
