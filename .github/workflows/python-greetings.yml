@@ -45,7 +45,7 @@ jobs:
 
       - name: Start app
         working-directory: app
-        run: pm2 start app.py --name greetings-app-dev -- --port 7000
+        run: pm2 start app.py --name greetings-app-dev -- --port 7001
 
 
   test-on-dev:
@@ -68,7 +68,7 @@ jobs:
 
       - name: Run tests
         working-directory: mocha
-        run: npm run greetings greeting_dev
+        run: npm run greetings greetings_dev
 
 #  deploy-to-staging:
 #    name: Deploy to Staging
