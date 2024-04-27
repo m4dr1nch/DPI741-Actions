@@ -35,18 +35,11 @@ jobs:
       - uses: actions/checkout@v3.5.2
 
       - name: Print title
-        run: echo Deploying to DEV
-      
-      - name: Remove the app if running
-        run: pm2 delete greetings-app-dev || true
-
-      - name: Clone repository
-        run: git clone https://github.com/m4dr1nch/DPI741-python-greetings app
-
-      - name: Start app
-        working-directory: app
-        run: pm2 start app.py --name greetings-app-dev -- --port 7001
-
+        uses: actions/deploy
+        with:
+          environ: 'dev'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7001
 
   test-on-dev:
     needs: deploy-to-dev
