@@ -16,10 +16,8 @@ runs:
       shell: bash
     
     - name: Remove the app if running
-      run: pm2 delete greetings-app-$APP_ENV || true
+      run: pm2 delete greetings-app-${{ inputs.environ }} || true
       shell: bash
-      env:
-        APP_ENV: ${{ inputs.environ }}
 
     - name: Clone repository
       run: git clone $APP_REPO $APP_ENV
