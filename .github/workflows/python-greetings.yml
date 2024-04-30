@@ -1,5 +1,6 @@
 name: CI Workflow
 
+# Added argparse
 on:
   push:
     branches: [ "main" ]
