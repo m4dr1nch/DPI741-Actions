@@ -12,10 +12,8 @@ runs:
 
   steps:
     - name: Print title
-      run: echo "Deploying to $APP_ENV"
+      run: echo Deploying to ${{ inputs.environ }}
       shell: bash
-      env:
-        APP_ENV: ${{ inputs.environ }}
     
     - name: Remove the app if running
       run: pm2 delete greetings-app-$APP_ENV || true
