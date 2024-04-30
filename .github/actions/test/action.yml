@@ -11,7 +11,7 @@ runs:
       shell: bash
 
     - name: get mocha
-      run: git clone https://github.com/mtararujs/course-js-api-framework mocha
+      run: git clone https://github.com/m4dr1nch/DPI741-js-api-framework mocha
       shell: bash
 
     - name: install npm dependencies
