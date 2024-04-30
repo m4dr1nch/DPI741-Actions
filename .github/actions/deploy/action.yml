@@ -20,7 +20,7 @@ runs:
       shell: bash
 
     - name: Clone repository
-      run: git clone ${{ inputs.environ }} ${{ inputs.repo }}
+      run: git clone ${{ inputs.repo }} ${{ inputs.environ }}
       shell: bash
 
     - name: Start app
