@@ -1,6 +1,5 @@
 name: CI Workflow
 
-# Added argparse
 on:
   push:
     branches: [ "main" ]
@@ -52,74 +51,74 @@ jobs:
           environ: 'dev'
 
 
-#  deploy-to-stg:
-#    needs: test-on-dev
-#    name: Deploy on stg
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/deploy
-#        with:
-#          environ: 'stg'
-#          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-#          port: 7002
-#
-#  test-on-stg:
-#    needs: deploy-to-stg
-#    name: Test on stg
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/test
-#        with:
-#          environ: 'stg'
-#
-#  deploy-to-preprod:
-#    needs: test-on-stg
-#    name: Deploy on preprod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/deploy
-#        with:
-#          environ: 'preprod'
-#          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-#          port: 7003
-#
-#  test-on-preprod:
-#    needs: deploy-to-preprod
-#    name: Test on preprod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/test
-#        with:
-#          environ: 'preprod'
-#
-#  deploy-to-prod:
-#    needs: test-on-preprod
-#    name: Deploy on prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/deploy
-#        with:
-#          environ: 'prod'
-#          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
-#          port: 7004
-#
-#  test-on-prod:
-#    needs: deploy-to-prod
-#    name: Test on prod
-#    runs-on: self-hosted
-#
-#    steps:
-#      - uses: actions/checkout@v3.5.2
-#      - uses: ./.github/actions/test
-#        with:
-#          environ: 'preprod'
+  deploy-to-stg:
+    needs: test-on-dev
+    name: Deploy on stg
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'stg'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7002
+
+  test-on-stg:
+    needs: deploy-to-stg
+    name: Test on stg
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'stg'
+
+  deploy-to-preprod:
+    needs: test-on-stg
+    name: Deploy on preprod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'preprod'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7003
+
+  test-on-preprod:
+    needs: deploy-to-preprod
+    name: Test on preprod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'preprod'
+
+  deploy-to-prod:
+    needs: test-on-preprod
+    name: Deploy on prod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
+        with:
+          environ: 'prod'
+          repo: 'https://github.com/m4dr1nch/DPI741-python-greetings'
+          port: 7004
+
+  test-on-prod:
+    needs: deploy-to-prod
+    name: Test on prod
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/test
+        with:
+          environ: 'preprod'
