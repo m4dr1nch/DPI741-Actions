@@ -20,10 +20,9 @@ runs:
       shell: bash
 
     - name: Clone repository
-      run: git clone $APP_REPO $APP_ENV
+      run: git clone ${{ inputs.environ }}$APP_ENV
       shell: bash
       env:
-        APP_ENV: ${{ inputs.environ }}
         APP_REPO: ${{ inputs.repo }}
 
     - name: Start app
