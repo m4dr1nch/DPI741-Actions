@@ -20,15 +20,10 @@ runs:
       shell: bash
 
     - name: Clone repository
-      run: git clone ${{ inputs.environ }}$APP_ENV
+      run: git clone ${{ inputs.environ }} ${{ inputs.repo }}
       shell: bash
-      env:
-        APP_REPO: ${{ inputs.repo }}
 
     - name: Start app
       working-directory: ${{ inputs.environ }}
+      run: pm2 start app.py --name greetings-app-${{ inputs.environ }} -- --port ${{ inputs.port }}
       shell: bash
-      run: pm2 start app.py --name greetings-app-$APP_ENV -- --port $APP_PORT
-      env:
-        APP_ENV: ${{ inputs.environ }}
-        APP_PORT: ${{ inputs.port }}

@@ -7,10 +7,8 @@ runs:
 
   steps:
     - name: Print title
-      run: echo "Testing on $APP_ENV"
+      run: echo "Testing on ${{ inputs.environ }}"
       shell: bash
-      env:
-        APP_ENV: ${{ inputs.environ }}
 
     - name: get mocha
       run: git clone https://github.com/mtararujs/course-js-api-framework mocha
@@ -23,7 +21,5 @@ runs:
 
     - name: run tests
       working-directory: mocha
-      run: npm run greetings greetings_$APP_ENV
+      run: npm run greetings greetings_${{ inputs.environ }}
       shell: bash
-      env:
-        APP_ENV: ${{ inputs.environ }}
